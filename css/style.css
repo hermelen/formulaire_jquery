@@ -1,3 +1,14 @@
 body {
   background-color: lightgrey;
 }
+
+h1 {
+  text-align: center;
+  padding: 1em;
+  color: grey;
+}
+
+div.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
