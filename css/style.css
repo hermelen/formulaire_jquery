@@ -16,3 +16,15 @@ div.button-container {
 .form-control  {
   border-width: 5px;
 }
+
+body main div div form div div small.form-text {
+  display: inline-block;
+}
+
+.fa-check {
+  background-image: url("../img/check-solid.svg");
+}
+
+.fa-times {
+  background-image: url("../img/times-solid.svg");
+}
