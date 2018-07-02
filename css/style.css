@@ -12,3 +12,7 @@ div.button-container {
   display: flex;
   justify-content: flex-end;
 }
+
+.form-control  {
+  border-width: 5px;
+}
