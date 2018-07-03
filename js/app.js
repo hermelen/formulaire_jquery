@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var toto = "";
   var tutu = "";
+  var tata ="";
 
 
   $(".form-control").focusout(function() { // check input kind (nickname or pass...)
@@ -72,21 +73,22 @@ $(document).ready(function() {
 
   $(".btn-primary").click(function(event) {
     for (var i = 0; i < $(".form-control").length; i++) {
-      console.log($($(".form-control")[i]));
       if ($($(".form-control")[i]).val() == "") {
         tutu += "\n" + $($(".form-control")[i]).attr('name');
-        alert("empty : " + tutu + " ");
-        return false;
       }
-      else if ($($(".form-control")[i]).attr('class') != 'border-success') {
-        alert("Il y a au moins une erreur dans le formulaire");
-        return false;
-      } else {
-        alert("Formulaire validé!")
-        return false;
+      else if ($($(".form-control")[i]).attr('class').indexOf('border-success') == -1) {
+        tata += "\n" + $($(".form-control")[i]).attr('name');
       }
     }
-    tutu = "";
+    if (tutu == "" && tata == "") {
+      alert("Formulaire validé!")
+      return true;
+    } else {
+      alert("empty : " + tutu + " \n Erreur : " + tata + " ");
+      return false;
+    }
+    tutu ="";
+    tata ="";
   });
 
   $(".btn-warning").click(function(event) {
