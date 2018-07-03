@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var toto = "";
   var tutu = "";
-  var tata ="";
+  var tata = "";
 
 
   $(".form-control").focusout(function() { // check input kind (nickname or pass...)
@@ -35,6 +35,40 @@ $(document).ready(function() {
     $(this).next().next().removeClass("fa-times"); // firefox bug
     $(this).next().text("Need at least 5 characters");
   });
+
+  $("#exampleInputPassword1").keyup(function() {
+    passCheck = $("#exampleInputPassword1").val();
+    numCheck = hasNumber(passCheck);
+    loCheck = hasLowerCase(passCheck);
+    upCheck = hasUpperCase(passCheck);
+    if (numCheck && loCheck && upCheck) {
+      $("#first-password").text('mot de passe sécurisé');
+    } else if (numCheck && loCheck) {
+      $("#first-password").text('manque majuscule');
+    } else if (numCheck && upCheck) {
+      $("#first-password").text('manque minuscule');
+    } else if (upCheck && loCheck) {
+      $("#first-password").text('manque chiffre');
+    } else if (numCheck) {
+      $("#first-password").text('manque majuscule et minuscule');
+    } else if (upCheck) {
+      $("#first-password").text('manque chiffre et minuscule');
+    } else if (loCheck) {
+      $("#first-password").text('manque chiffre et majuscule');
+    }
+  });
+
+  function hasNumber(myString) {
+    return /\d/.test(myString);
+  }
+
+  function hasLowerCase(str) {
+    return (/[a-z]/.test(str));
+  }
+
+  function hasUpperCase(str) {
+    return (/[A-Z]/.test(str));
+  }
 
   $("#exampleInputPassword2").on("focusout", function() { // check password confirmation
     if ($(this).val() != $("#exampleInputPassword1").val()) {
@@ -75,8 +109,7 @@ $(document).ready(function() {
     for (var i = 0; i < $(".form-control").length; i++) {
       if ($($(".form-control")[i]).val() == "") {
         tutu += "\n" + $($(".form-control")[i]).attr('name');
-      }
-      else if ($($(".form-control")[i]).attr('class').indexOf('border-success') == -1) {
+      } else if ($($(".form-control")[i]).attr('class').indexOf('border-success') == -1) {
         tata += "\n" + $($(".form-control")[i]).attr('name');
       }
     }
@@ -87,8 +120,8 @@ $(document).ready(function() {
       alert("empty : " + tutu + " \n Erreur : " + tata + " ");
       return false;
     }
-    tutu ="";
-    tata ="";
+    tutu = "";
+    tata = "";
   });
 
   $(".btn-warning").click(function(event) {
